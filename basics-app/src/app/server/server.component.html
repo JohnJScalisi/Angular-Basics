@@ -1,0 +1,11 @@
+<h3>Server Component</h3>
+
+<!-- String-interpolation syntax: variable name, method, ternary, or string. -->
+<!-- Other complex statements are prohibited. -->
+<p>Server ID: {{ serverId }} </p>
+
+<!-- Style based on the status using property-binding (square-brackets) -->
+<!-- on the ngStyle and ngClass directives. -->
+<p [ngStyle]="{backgroundColor: getServerStatusColor()}" [ngClass]="{online: serverStatus === 'Online'}">
+    Status: {{ getServerStatus() }}
+</p>

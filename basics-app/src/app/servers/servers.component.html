@@ -1,0 +1,38 @@
+<label>Server Name</label>
+
+<!-- User input of the server name using event binding. -->
+<!-- The $event contains the data emitted as part of the event. -->
+<!-- <input type="text" class="form-control" (input)="onUpdateServerName($event)"> -->
+
+<!-- User input of the server name using two-way binding. -->
+<!-- The ngModel is a directive: -->
+<!--    o Saves the value in newServerName -->
+<!--    o Changes the value in the component when newServerName is changes outside of the component -->
+<input type="text" class="form-control" [(ngModel)]="newServerName">
+
+<!-- Define a button using the property bindings to enabled/disable the button -->
+<!-- Notice the attribute is enclosed in square-brackets to indicate property binding. -->
+<!-- Event binding is defined by placing the event (without the 'on') in parenthseses -->
+<!-- and associating it with an action method. -->
+<button class="btn btn-primary" [disabled]="!allowNewServer" (click)="onCreateServer()">
+    Add Server
+</button>
+
+<!-- <p>{{ createServerText }}</p> -->
+
+<!-- Use a structural-directive (changes structure of DOM by adding/removing elements) to conditionally -->
+<!-- show the server name when createServerStatus = true.  The else-clause is a local reference (see below). -->
+<p *ngIf="createServerStatus; else noServer">{{ createServerText }}</p>
+
+<!-- Use an attribute-directive (changes the structure of the DOM by changing the element)-->
+
+<!-- Use a local reference to add the else-clause to the ngIf. -->
+<ng-template #noServer>
+    <p>No server created.</p>
+</ng-template>
+
+<!-- Embed the server-component in this component. -->
+<!-- The ngFor directive loops through each element in the serverNames value. -->
+<!-- The additional statement gets access to the index of the element in the array. -->
+<hr/>
+<div class="app-server" *ngFor="let serverName of serverNames; let findx = index"></div>
